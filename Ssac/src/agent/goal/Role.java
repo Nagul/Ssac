@@ -1,0 +1,14 @@
+package agent.goal;
+
+public enum Role {
+	ENFANT,
+	CHOMEUR,
+	CULTIVATEUR,
+	ELEVEUR,
+	CHASSEUR,
+	PORTEUR_EAU,
+	CONSTRUCTEUR,
+	CUISINIER,
+	BUCHERON,
+	CHEF
+}
