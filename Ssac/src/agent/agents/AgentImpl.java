@@ -1,5 +1,6 @@
 package agent.agents;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 import affichage.TestQt;
@@ -103,6 +104,7 @@ public abstract class AgentImpl implements Agent {
 		for(Goal g : goals) {
 			g.calculGoal();
 		}
+		Collections.sort(goals);
 	}
 
 	public HashMap<Coordonnee, Connaissance> getListConnaissances() {
@@ -117,11 +119,15 @@ public abstract class AgentImpl implements Agent {
 		return planning;
 	}
 	
+	public void nextAction() {
+		planning.remove(0);
+	}
+	
 	public void clearPlanning() {
-		// empty the planning !
+		planning.clear();
 	}
 	public void addToPlanning(Action action) {
-		// add action to planning !
+		planning.add(action);
 	}
 
 	public boolean isAlive() {
@@ -195,7 +201,6 @@ public abstract class AgentImpl implements Agent {
 		clock += duration ;
 	}
 	
-	//doit etre override par m�thodes de sous-classe
 	public abstract void voir();
 	
 	public abstract TypeAgent getType();

@@ -1,5 +1,6 @@
 package agent.goal;
 
+import affichage.TestQt;
 import agent.agents.Agent;
 import agent.raisonnement.MoveAction;
 import environnement.Coordonnee;
@@ -14,11 +15,20 @@ public class GoalExploration extends Goal {
 		priorite = 20;
 	}
 	
-	@Override
 	public void createPlanning() {
-		Goal task = agent.getGoals().get(0);
-		Coordonnee destination = new Coordonnee(agent.getCoordonnee().getAbscisse(), agent.getCoordonnee().getOrdonnee() + 100);
-		MoveAction action = new MoveAction(agent, task, destination);
+		boolean wtf = true;
+		int ind = 50;
+		Coordonnee destination;
+		while (wtf) {
+			if (TestQt.environnement.getTerrain().blocked(agent, agent.getCoordonnee().getAbscisse(),
+					agent.getCoordonnee().getOrdonnee() + ind)) {
+				ind += 1;
+			} else {
+				wtf = false;
+			}
+		}
+		destination = new Coordonnee(agent.getCoordonnee().getAbscisse(), agent.getCoordonnee().getOrdonnee() + ind);
+		MoveAction action = new MoveAction(agent, this, destination);
 		this.agent.addToPlanning(action);
 	}
 	

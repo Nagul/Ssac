@@ -78,6 +78,12 @@ public class Terrain implements TileBasedMap {
 	
 	//Méthodes pour implanter TileBasedMap
 	public boolean blocked(Agent agent, int x, int y) {
+		if (x < 0
+				|| x > TestQt.environnement.getTerrain().getLongueur() - 1
+				|| y < 0
+				|| y > TestQt.environnement.getTerrain().getLargeur() - 1) {
+			return true;
+		}
 		if (agent instanceof AgentHumainImpl) {
 			return (cases[x][y].getType() == TypeTerrain.Montagne);
 		}

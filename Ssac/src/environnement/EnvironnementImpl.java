@@ -1,6 +1,8 @@
 package environnement;
 import java.util.ArrayList;
 import java.util.List;
+
+import affichage.TestQt;
 import agent.agents.Agent;
 
 
@@ -56,7 +58,10 @@ public class EnvironnementImpl implements Environnement {
 			a.modSoif(-1);//valeur à déterminer
 			a.voir();
 			a.updateGoal();
-			// ...
+			a.getGoals().get(0).createPlanning();
+			if (a.getPlanning().size() != 0) {
+				a.getPlanning().get(0).step();
+			}
 		}
 	}
 

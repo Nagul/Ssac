@@ -88,11 +88,6 @@ public class QListWidget4Agent extends QListWidget {
 			for (QListWidgetItem4Agent agent : listAgents) {
 				ArrayList<Goal> goals = (ArrayList<Goal>) agent.getAgent().getGoals();
 				Goal currGoal = goals.get(0);
-				for (Goal g : goals) {
-					if (g.getPriorite() > currGoal.getPriorite()) {
-						currGoal = g;
-					}
-				}
 				
 				if (currGoal.getTypeGoal().equals(corpus)) {
 					agents.add(agent);

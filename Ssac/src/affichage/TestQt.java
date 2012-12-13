@@ -10,6 +10,7 @@ public class TestQt {
 	public static int date;
 	public static Random rand;
 	public static EnvironnementImpl environnement;
+	//rajouter le PathFinder en static
 	
 	public static void main(String[] args) {
 		

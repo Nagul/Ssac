@@ -37,10 +37,35 @@ public class Widget extends QMainWindow {
 	private QDockWidget dockWidget;
 	private Terrain terrain;
 	
-
+	//images
+	private final QPixmap imageLoup = new QPixmap("./ressources/Wolf.png");
+	private final QPixmap imageMouton = new QPixmap("./ressources/Sheep.png");
+	private final QPixmap imageRongeur = new QPixmap("./ressources/Rodent.png");
+	private final QPixmap imageOurs = new QPixmap("./ressources/Bear.png");
+	private final QPixmap imageOiseau = new QPixmap("./ressources/Bird.png");
+	private final QPixmap imagePoisson = new QPixmap("./ressources/Fish.png");
+	
+	//pinceaux
+	private final QPen penGreen = new QPen(QColor.green);
+	private final QBrush brushGreen = new QBrush(QColor.green, Qt.BrushStyle.SolidPattern);
+	private final QPen penDarkGreen = new QPen(QColor.darkGreen);
+	private final QBrush brushDarkGreen = new QBrush(QColor.darkGreen, Qt.BrushStyle.SolidPattern);
+	private final QPen penBlue = new QPen(QColor.blue);
+	private final QBrush brushBlue = new QBrush(QColor.blue, Qt.BrushStyle.SolidPattern);
+	private final QPen penDarkBlue = new QPen(QColor.darkBlue);
+	private final QBrush brushDarkBlue = new QBrush(QColor.darkBlue, Qt.BrushStyle.SolidPattern);
+	private final QPen penGray = new QPen(QColor.gray);
+	private final QBrush brushGray = new QBrush(QColor.gray, Qt.BrushStyle.SolidPattern);
+	private final QPen penRed = new QPen(QColor.red);
+	private final QBrush brushRed = new QBrush(QColor.red, Qt.BrushStyle.SolidPattern);
+	
+	private ArrayList<QGraphicsPixmapItem> imagesTemporaires;
+	
 	public Widget() {
 		super();
-
+		
+		imagesTemporaires = new ArrayList<QGraphicsPixmapItem>();
+		
 		setToolbar();
 		setDockWidget();
 		setScene();
@@ -96,7 +121,6 @@ public class Widget extends QMainWindow {
 	}
 
 	private void fogOfWar(QListWidgetItem item) {
-		System.out.println("Brouillard de guerre à implémenter");
 	}
 
 	private void sortBy(String type) {
@@ -312,20 +336,6 @@ public class Widget extends QMainWindow {
 			} while (nonRelie);
 		}
 		
-		//pinceaux
-		QPen penGreen = new QPen(QColor.green);
-		QBrush brushGreen = new QBrush(QColor.green, Qt.BrushStyle.SolidPattern);
-		QPen penDarkGreen = new QPen(QColor.darkGreen);
-		QBrush brushDarkGreen = new QBrush(QColor.darkGreen, Qt.BrushStyle.SolidPattern);
-		QPen penBlue = new QPen(QColor.blue);
-		QBrush brushBlue = new QBrush(QColor.blue, Qt.BrushStyle.SolidPattern);
-		QPen penDarkBlue = new QPen(QColor.darkBlue);
-		QBrush brushDarkBlue = new QBrush(QColor.darkBlue, Qt.BrushStyle.SolidPattern);
-		QPen penGray = new QPen(QColor.gray);
-		QBrush brushGray = new QBrush(QColor.gray, Qt.BrushStyle.SolidPattern);
-		QPen penRed = new QPen(QColor.red);
-		QBrush brushRed = new QBrush(QColor.red, Qt.BrushStyle.SolidPattern);
-		
 		//Maintenant, on dessine :
 		int mi, mj;
 		for(i=0; i<longueur; i++) {
@@ -426,14 +436,12 @@ public class Widget extends QMainWindow {
 	
 	public void run() {
 		TestQt.environnement.step();
-		QPixmap imageLoup = new QPixmap("./ressources/Wolf.png");
-		QPixmap imageMouton = new QPixmap("./ressources/Sheep.png");
-		QPixmap imageRongeur = new QPixmap("./ressources/Rodent.png");
-		QPixmap imageOurs = new QPixmap("./ressources/Bear.png");
-		QPixmap imageOiseau = new QPixmap("./ressources/Bird.png");
-		QPixmap imagePoisson = new QPixmap("./ressources/Fish.png");
-		QGraphicsPixmapItem im = new QGraphicsPixmapItem();
+		for (QGraphicsPixmapItem i : imagesTemporaires) {
+			scene.removeItem(i);
+		}
+		imagesTemporaires.clear();
 		for(Agent a : TestQt.environnement.getAgents()) {
+			QGraphicsPixmapItem im = new QGraphicsPixmapItem();
 			if(a instanceof AgentLoup) {
 				im = scene.addPixmap(imageLoup);
 			}
@@ -453,6 +461,7 @@ public class Widget extends QMainWindow {
 				im = scene.addPixmap(imageRongeur);
 			}
 			im.setPos(a.getCoordonnee().getAbscisse()*32, a.getCoordonnee().getOrdonnee()*32);
+			imagesTemporaires.add(im);
 		}
 		refreshDockWidget();
 	}

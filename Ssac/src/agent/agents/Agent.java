@@ -167,5 +167,6 @@ public interface Agent {
 	public void voir();
 	
 	public TypeAgent getType();
+	public void nextAction();
 
 }

@@ -47,11 +47,6 @@ public class QFrame4Details extends QFrame {
 		}
 		ArrayList<Goal> goals = (ArrayList<Goal>) a.getGoals();
 		Goal currGoal = goals.get(0);
-		for (Goal g : goals) {
-			if (g.getPriorite() > currGoal.getPriorite()) {
-				currGoal = g;
-			}
-		}
 		
 		ArrayList<QLabel> details = new ArrayList<QLabel>();
 		details.add(new QLabel("" + energie));

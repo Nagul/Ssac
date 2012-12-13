@@ -36,23 +36,25 @@ public class MoveAction extends Action {
 	
 	public boolean useful() {
 		checkPath();
-		return (path.getLength() == 1);
+		return ((path != null)&&(path.getLength() != 1));
 	}
 	
 	public void step() {
 		checkPath();
 		if (index < path.getLength()) {
-			// check de si je vais entrer dans un truc pas de la terre ou pas
+			// check de si je vais entrer dans un truc accessible ou pas
 			Coordonnee dest = path.getCoordonnee(index);
-			// terre : ok
-			if (TestQt.environnement.getTerrain().getCase(dest).getType().equals(TypeTerrain.Terre)) {
+			if (!TestQt.environnement.getTerrain().blocked(master, dest.getAbscisse(), dest.getOrdonnee())) {
 				master.moveTo(dest);
 				master.delay(1);
 			}
-			// pas terre et pas la destination (sinon on va boucler sur cette étape) : on regenere le path
+			// pas accessible et pas la destination (sinon on va boucler sur cette étape) : on regenere le path
 			else if (index <= path.getLength() - 1) {
-				AStarPathFinder aStar = new AStarPathFinder(TestQt.environnement.getTerrain(), Integer.MAX_VALUE, false);
-				Path newPath = aStar.findPath(master, master.getCoordonnee().getAbscisse(), master.getCoordonnee().getOrdonnee(), target.getAbscisse(),
+				AStarPathFinder aStar = new AStarPathFinder(TestQt.environnement.getTerrain(), 50, true);
+				Path newPath = aStar.findPath(master,
+						master.getCoordonnee().getAbscisse(),
+						master.getCoordonnee().getOrdonnee(),
+						target.getAbscisse(),
 						target.getOrdonnee());
 				
 				index = 1;
@@ -64,6 +66,7 @@ public class MoveAction extends Action {
 		}
 		index += 1;
 		if (index >= path.getLength()) {
+			master.nextAction();
 			parent.terminate(this, true);
 		}
 	}
@@ -78,15 +81,21 @@ public class MoveAction extends Action {
 		if (path == null) {
 			// explo : blind mode, tout schuss
 			if (this.parent instanceof GoalExploration) {
-				AStarPathFinder aStar = new AStarPathFinder(new Terrain(true), Integer.MAX_VALUE, false);
-				Path newPath = aStar.findPath(master, master.getCoordonnee().getAbscisse(), master.getCoordonnee().getOrdonnee(), target.getAbscisse(),
+				AStarPathFinder aStar = new AStarPathFinder(new Terrain(true), 50, true);
+				Path newPath = aStar.findPath(master,
+						master.getCoordonnee().getAbscisse(),
+						master.getCoordonnee().getOrdonnee(),
+						target.getAbscisse(),
 						target.getOrdonnee());
 				path = newPath;
 			}
 			// sinon : cheat mode, carte static totale
 			else {
-				AStarPathFinder aStar = new AStarPathFinder(TestQt.environnement.getTerrain(), Integer.MAX_VALUE, false);
-				Path newPath = aStar.findPath(master, master.getCoordonnee().getAbscisse(), master.getCoordonnee().getOrdonnee(), target.getAbscisse(),
+				AStarPathFinder aStar = new AStarPathFinder(TestQt.environnement.getTerrain(), 50, true);
+				Path newPath = aStar.findPath(master,
+						master.getCoordonnee().getAbscisse(),
+						master.getCoordonnee().getOrdonnee(),
+						target.getAbscisse(),
 						target.getOrdonnee());
 				path = newPath;
 			}
