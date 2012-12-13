@@ -1,10 +1,7 @@
 package affichage;
 import java.util.Random;
 
-import environnement.Coordonnee;
 import environnement.EnvironnementImpl;
-
-import agent.agents.*;
 
 import com.trolltech.qt.gui.QApplication;
  

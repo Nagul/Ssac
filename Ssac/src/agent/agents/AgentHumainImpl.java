@@ -1,10 +1,14 @@
 package agent.agents;
 
+import java.util.ArrayList;
+
 import affichage.TestQt;
 import agent.goal.GoalPredateur;
 import agent.goal.Role;
 import agent.raisonnement.Connaissance;
 import environnement.Coordonnee;
+import environnement.TypeObject;
+import environnement.TypeSmallObject;
 import environnement.TypeTerrain;
 
 public class AgentHumainImpl extends AgentImpl implements AgentHumain {
@@ -48,4 +52,25 @@ public class AgentHumainImpl extends AgentImpl implements AgentHumain {
 		}
 	}
 	
+	public TypeAgent getType() {
+		return TypeAgent.Humain;
+	}
+
+	@Override
+	public Coordonnee find(TypeObject type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<TypeSmallObject> getFoods() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void eat() {
+		// TODO Auto-generated method stub
+		
+	}
 }

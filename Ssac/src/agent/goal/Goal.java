@@ -29,5 +29,7 @@ public abstract class Goal implements Task {
 	
 	//priorit� g�n�tique dans le futur car c'est cooooooooooool
 	public abstract void calculGoal();
+	
+	public abstract TypeGoal getTypeGoal();
 
 }

@@ -20,4 +20,8 @@ public class GoalTache extends Goal {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public TypeGoal getTypeGoal() {
+		return TypeGoal.Tache;
+	}
 }

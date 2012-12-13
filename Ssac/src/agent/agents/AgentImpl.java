@@ -198,4 +198,6 @@ public abstract class AgentImpl implements Agent {
 	//doit etre override par m�thodes de sous-classe
 	public abstract void voir();
 	
+	public abstract TypeAgent getType();
+
 }

@@ -1,8 +1,7 @@
 package affichage;
 
 import agent.agents.Agent;
-import agent.agents.TypeAgent;
-
+import agent.agents.AgentHumainImpl;
 import com.trolltech.qt.gui.QIcon;
 import com.trolltech.qt.gui.QListWidgetItem;
 
@@ -13,7 +12,7 @@ public class QListWidgetItem4Agent extends QListWidgetItem {
 	public QListWidgetItem4Agent(Agent agent) {
 		super(new QIcon(), agent.toString());
 		QIcon icon;
-		if (agent.getType().equals(TypeAgent.Humain)) {
+		if (agent instanceof AgentHumainImpl) {
 			icon = new QIcon("./ressources/dockUser.png");
 		}
 		else {

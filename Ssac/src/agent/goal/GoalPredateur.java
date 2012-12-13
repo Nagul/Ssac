@@ -22,4 +22,7 @@ public class GoalPredateur extends Goal {
 		
 	}
 	
+	public TypeGoal getTypeGoal() {
+		return TypeGoal.Predateur;
+	}
 }

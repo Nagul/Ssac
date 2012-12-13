@@ -56,6 +56,9 @@ public class AgentMouton extends AgentImpl {
 	@Override
 	public void eat() {
 		// TODO Auto-generated method stub
-		
+	}
+	
+	public TypeAgent getType() {
+		return TypeAgent.Mouton;
 	}
 }

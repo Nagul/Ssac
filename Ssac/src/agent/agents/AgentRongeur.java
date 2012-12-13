@@ -58,4 +58,8 @@ public class AgentRongeur extends AgentImpl {
 		
 	}
 	
+	public TypeAgent getType() {
+		return TypeAgent.Rongeur;
+	}
+	
 }

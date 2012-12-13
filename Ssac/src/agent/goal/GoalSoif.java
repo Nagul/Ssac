@@ -17,4 +17,8 @@ public class GoalSoif extends Goal {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public TypeGoal getTypeGoal() {
+		return TypeGoal.Soif;
+	}
 }

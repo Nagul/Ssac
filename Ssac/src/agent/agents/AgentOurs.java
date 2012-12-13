@@ -78,4 +78,8 @@ public class AgentOurs extends AgentImpl {
 		
 	}
 	
+	public TypeAgent getType() {
+		return TypeAgent.Ours;
+	}
+	
 }

@@ -18,4 +18,8 @@ public class GoalAbris extends Goal {
 		
 	}
 	
+	public TypeGoal getTypeGoal() {
+		return TypeGoal.Abris;
+	}
+	
 }

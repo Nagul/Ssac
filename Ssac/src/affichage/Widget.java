@@ -126,11 +126,12 @@ public class Widget extends QMainWindow {
 				toggleItems(i);
 			}
 		}
-		// montrer les détailes de l'agent
+		// montrer les détails de l'agent
 		else {
 			QListWidgetItem4Agent item4Agent = (QListWidgetItem4Agent) item;
 			Agent agent = item4Agent.getAgent();
-
+			view.centerOn(agent.getCoordonnee().getAbscisse()*32, 
+					agent.getCoordonnee().getOrdonnee()*32);
 			QFrame details = new QFrame4Details(agent);
 			details.show();
 		}
@@ -364,22 +365,22 @@ public class Widget extends QMainWindow {
 				rand = TestQt.rand.nextInt(10);
 				if(rand!=1)
 					continue;
-				if((animaux[i][j]==127)
+				if(((animaux[i][j]==127)||(animaux[i][j]==126))
 						&&(TestQt.environnement.getTerrain().getCase(i, j).getType()==TypeTerrain.Foret)) {
 					TestQt.environnement.addAgent(new AgentLoup(new Coordonnee(i,j), 0, null));
-				} else if((animaux[i][j]==126)
+				} else if((animaux[i][j]==125)
 						&&(TestQt.environnement.getTerrain().getCase(i, j).getType()==TypeTerrain.Terre)) {
 					TestQt.environnement.addAgent(new AgentMouton(new Coordonnee(i,j), 0));
-				} else if(animaux[i][j]==125) {
+				} else if(animaux[i][j]==124) {
 					TestQt.environnement.addAgent(new AgentOiseau(new Coordonnee(i, j), 0));
-				} else if((animaux[i][j]==124)
+				} else if(((animaux[i][j]==123)||(animaux[i][j]==122))
 						&&(TestQt.environnement.getTerrain().getCase(i, j).getType()==TypeTerrain.Foret)) {
 					TestQt.environnement.addAgent(new AgentOurs(new Coordonnee(i,j), 0));
-				} else if((animaux[i][j]==123)
+				} else if((animaux[i][j]==121)
 						&&((TestQt.environnement.getTerrain().getCase(i, j).getType()==TypeTerrain.EauDeMer)
 								||(TestQt.environnement.getTerrain().getCase(i, j).getType()==TypeTerrain.EauDeMer))) {
 					TestQt.environnement.addAgent(new AgentPoisson(new Coordonnee(i,j), 0, null));
-				} else if((animaux[i][j]==122)
+				} else if((animaux[i][j]==120)
 						&&((TestQt.environnement.getTerrain().getCase(i, j).getType()==TypeTerrain.Terre)
 								||(TestQt.environnement.getTerrain().getCase(i, j).getType()==TypeTerrain.Foret))) {
 					TestQt.environnement.addAgent(new AgentRongeur(new Coordonnee(i,j), 0));
@@ -425,12 +426,12 @@ public class Widget extends QMainWindow {
 	
 	public void run() {
 		TestQt.environnement.step();
-		QPixmap imageLoup = new QPixmap("C:/Users/Nagul/git/-Simulation-Societe-Agents-Cooperatifs/SAC/ressources/Wolf.png");
-		QPixmap imageMouton = new QPixmap("C:/Users/Nagul/git/-Simulation-Societe-Agents-Cooperatifs/SAC/ressources/Sheep.png");
-		QPixmap imageRongeur = new QPixmap("C:/Users/Nagul/git/-Simulation-Societe-Agents-Cooperatifs/SAC/ressources/Rodent.png");
-		QPixmap imageOurs = new QPixmap("C:/Users/Nagul/git/-Simulation-Societe-Agents-Cooperatifs/SAC/ressources/Bear.png");
-		QPixmap imageOiseau = new QPixmap("C:/Users/Nagul/git/-Simulation-Societe-Agents-Cooperatifs/SAC/ressources/Bird.png");
-		QPixmap imagePoisson = new QPixmap("C:/Users/Nagul/git/-Simulation-Societe-Agents-Cooperatifs/SAC/ressources/Fish.png");
+		QPixmap imageLoup = new QPixmap("./ressources/Wolf.png");
+		QPixmap imageMouton = new QPixmap("./ressources/Sheep.png");
+		QPixmap imageRongeur = new QPixmap("./ressources/Rodent.png");
+		QPixmap imageOurs = new QPixmap("./ressources/Bear.png");
+		QPixmap imageOiseau = new QPixmap("./ressources/Bird.png");
+		QPixmap imagePoisson = new QPixmap("./ressources/Fish.png");
 		QGraphicsPixmapItem im = new QGraphicsPixmapItem();
 		for(Agent a : TestQt.environnement.getAgents()) {
 			if(a instanceof AgentLoup) {
@@ -451,8 +452,9 @@ public class Widget extends QMainWindow {
 			if(a instanceof AgentRongeur) {
 				im = scene.addPixmap(imageRongeur);
 			}
-			im.setPos(a.getCoordonnee().getAbscisse()*32, a.getCoordonnee().getOrdonnee()*32);			
+			im.setPos(a.getCoordonnee().getAbscisse()*32, a.getCoordonnee().getOrdonnee()*32);
 		}
+		refreshDockWidget();
 	}
 
 	private QListWidget4Agent getDockContent() {

@@ -165,5 +165,7 @@ public interface Agent {
 	 * update des connaissances de l'Agent en fonction de ce qu'il voit
 	 */
 	public void voir();
+	
+	public TypeAgent getType();
 
 }

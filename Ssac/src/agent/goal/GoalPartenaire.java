@@ -19,4 +19,7 @@ public class GoalPartenaire extends Goal {
 		
 	}
 	
+	public TypeGoal getTypeGoal() {
+		return TypeGoal.Partenaire;
+	}
 }

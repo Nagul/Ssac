@@ -67,5 +67,9 @@ public class AgentPoisson extends AgentImpl {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public TypeAgent getType() {
+		return TypeAgent.Poisson;
+	}
 
 }

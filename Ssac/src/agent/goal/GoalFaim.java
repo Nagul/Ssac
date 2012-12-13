@@ -18,4 +18,8 @@ public class GoalFaim extends Goal {
 		
 	}
 	
+	public TypeGoal getTypeGoal() {
+		return TypeGoal.Faim;
+	}
+	
 }

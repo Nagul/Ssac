@@ -18,4 +18,9 @@ public class GoalRepos extends Goal {
 	public void calculGoal() {
 		priorite = (int) (100 - agent.getEnergie());
 	}
+	
+	public TypeGoal getTypeGoal() {
+		return TypeGoal.Repos;
+	}
+	
 }

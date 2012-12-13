@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import agent.agents.Agent;
 import agent.agents.AgentHumainImpl;
 import agent.agents.TypeAgent;
-import agent.goal.Corpus;
 import agent.goal.Goal;
 import agent.goal.Role;
+import agent.goal.TypeGoal;
 
 import com.trolltech.qt.gui.QListWidget;
 import com.trolltech.qt.gui.QListWidgetItem;
@@ -83,7 +83,7 @@ public class QListWidget4Agent extends QListWidget {
 	}
 	
 	private void sortByGoal(ArrayList<QListWidgetItem4Agent> listAgents) {
-		for (Corpus corpus : Corpus.values()) {
+		for (TypeGoal corpus : TypeGoal.values()) {
 			ArrayList<QListWidgetItem4Agent> agents = new ArrayList<QListWidgetItem4Agent>();
 			for (QListWidgetItem4Agent agent : listAgents) {
 				ArrayList<Goal> goals = (ArrayList<Goal>) agent.getAgent().getGoals();
@@ -94,7 +94,7 @@ public class QListWidget4Agent extends QListWidget {
 					}
 				}
 				
-				if (currGoal.getCorpus().equals(corpus)) {
+				if (currGoal.getTypeGoal().equals(corpus)) {
 					agents.add(agent);
 				}
 			}

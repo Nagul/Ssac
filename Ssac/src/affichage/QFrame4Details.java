@@ -61,7 +61,7 @@ public class QFrame4Details extends QFrame {
 		details.add(new QLabel(((Boolean) vivant).toString()));
 		details.add(new QLabel(type.name()));
 		details.add(new QLabel(sexe));
-		details.add(new QLabel(currGoal.getCorpus().name()));
+		details.add(new QLabel(currGoal.getTypeGoal().name()));
 //		details.add(new QLabel("undef"));
 //		details.add(new QLabel("undef"));
 		if (a instanceof AgentHumainImpl) {

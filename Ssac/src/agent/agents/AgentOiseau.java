@@ -54,5 +54,9 @@ public class AgentOiseau extends AgentImpl {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public TypeAgent getType() {
+		return TypeAgent.Oiseau;
+	}
 
 }

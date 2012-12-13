@@ -75,4 +75,8 @@ public class AgentLoup extends AgentImpl {
 		
 	}
 	
+	public TypeAgent getType() {
+		return TypeAgent.Loup;
+	}
+	
 }
