@@ -5,6 +5,7 @@ import pathFinding.AStarPathFinder;
 import pathFinding.Path;
 
 import agent.agents.*;
+import agent.raisonnement.MoveAction;
 import environnement.Coordonnee;
 import environnement.Terrain;
 import environnement.TypeTerrain;
@@ -381,12 +382,12 @@ public class Widget extends QMainWindow {
 				} else if((animaux[i][j]==125)
 						&&(TestQt.environnement.getTerrain().getCase(i, j).getType()==TypeTerrain.Terre)) {
 					TestQt.environnement.addAgent(new AgentMouton(new Coordonnee(i,j), 0));
-				} else if(animaux[i][j]==124) {
+				} else if((animaux[i][j]==124)&&(TestQt.rand.nextInt(10)==0)) {
 					TestQt.environnement.addAgent(new AgentOiseau(new Coordonnee(i, j), 0));
 				} else if(((animaux[i][j]==123)||(animaux[i][j]==122))
 						&&(TestQt.environnement.getTerrain().getCase(i, j).getType()==TypeTerrain.Foret)) {
 					TestQt.environnement.addAgent(new AgentOurs(new Coordonnee(i,j), 0));
-				} else if((animaux[i][j]==121)
+				} else if((animaux[i][j]==121)&&(TestQt.rand.nextInt(10)==0)
 						&&((TestQt.environnement.getTerrain().getCase(i, j).getType()==TypeTerrain.EauDeMer)
 								||(TestQt.environnement.getTerrain().getCase(i, j).getType()==TypeTerrain.EauDeMer))) {
 					TestQt.environnement.addAgent(new AgentPoisson(new Coordonnee(i,j), 0, null));
@@ -397,6 +398,11 @@ public class Widget extends QMainWindow {
 				}
 			}
 		}
+		
+		//testalacon
+		TestQt.environnement.addAgent(new AgentLoup(new Coordonnee(250,250), 0, null));
+		TestQt.environnement.addAgent(new AgentMouton(new Coordonnee(250,251), 0));
+		
 
 		/*test de AStar
 		Coordonnee c = new environnement.Coordonnee(250, 250);
@@ -444,26 +450,22 @@ public class Widget extends QMainWindow {
 			QGraphicsPixmapItem im = new QGraphicsPixmapItem();
 			if(a instanceof AgentLoup) {
 				im = scene.addPixmap(imageLoup);
-			}
-			if(a instanceof AgentMouton) {
+			} else if (a instanceof AgentMouton) {
 				im = scene.addPixmap(imageMouton);
-			}
-			if(a instanceof AgentOiseau) {
+			} else if (a instanceof AgentOiseau) {
 				im = scene.addPixmap(imageOiseau);
-			}
-			if(a instanceof AgentOurs) {
+			} else if (a instanceof AgentOurs) {
 				im = scene.addPixmap(imageOurs);
-			}
-			if(a instanceof AgentPoisson) {
+			} else if (a instanceof AgentPoisson) {
 				im = scene.addPixmap(imagePoisson);
-			}
-			if(a instanceof AgentRongeur) {
+			} else {
 				im = scene.addPixmap(imageRongeur);
 			}
 			im.setPos(a.getCoordonnee().getAbscisse()*32, a.getCoordonnee().getOrdonnee()*32);
 			imagesTemporaires.add(im);
 		}
 		refreshDockWidget();
+		System.out.println(TestQt.environnement.getAgents().size());
 	}
 
 	private QListWidget4Agent getDockContent() {

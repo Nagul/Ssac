@@ -1,4 +1,5 @@
 package agent.raisonnement;
+import java.util.ArrayList;
 import java.util.List;
 
 import agent.agents.Agent;
@@ -28,7 +29,7 @@ public class Connaissance {
 		oubliable = o;
 	}
 	
-	public Connaissance(TypeTerrain t, EnvObject eo, List<Agent> agents, int o) {
+	public Connaissance(TypeTerrain t, EnvObject eo, ArrayList<Agent> agents, int o) {
 		souvenir = new Case(t, eo);
 		for(Agent a : agents) {
 			souvenir.addAgents(a);
@@ -43,4 +44,5 @@ public class Connaissance {
 	public int getOubliable() {
 		return oubliable;
 	}
+	
 }

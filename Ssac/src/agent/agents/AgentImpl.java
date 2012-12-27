@@ -126,6 +126,7 @@ public abstract class AgentImpl implements Agent {
 	public void clearPlanning() {
 		planning.clear();
 	}
+	
 	public void addToPlanning(Action action) {
 		planning.add(action);
 	}
@@ -143,7 +144,10 @@ public abstract class AgentImpl implements Agent {
 	}
 
 	public void moveTo(Coordonnee newPosition) {
-		coordonnee = newPosition ;
+		TestQt.environnement.getTerrain().getCase(coordonnee).removeAgents(this);
+		coordonnee = newPosition;
+		TestQt.environnement.getTerrain().getCase(coordonnee).addAgents(this);
+		
 	}
 		
 	public Case getCase() {

@@ -1,6 +1,8 @@
 package affichage;
 import java.util.Random;
 
+import pathFinding.AStarPathFinder;
+
 import environnement.EnvironnementImpl;
 
 import com.trolltech.qt.gui.QApplication;
@@ -10,7 +12,7 @@ public class TestQt {
 	public static int date;
 	public static Random rand;
 	public static EnvironnementImpl environnement;
-	//rajouter le PathFinder en static
+	public static AStarPathFinder aStar;
 	
 	public static void main(String[] args) {
 		
@@ -21,6 +23,7 @@ public class TestQt {
 		int largeur = 500;
 		environnement = new EnvironnementImpl(longueur, largeur);
 		
+		aStar = new AStarPathFinder(TestQt.environnement.getTerrain(), 50, true);
 
 		QApplication.initialize(args);
 		

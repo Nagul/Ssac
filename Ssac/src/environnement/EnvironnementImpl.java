@@ -24,6 +24,7 @@ public class EnvironnementImpl implements Environnement {
 
 	public void addAgent(Agent agent) {
 		listAgent.add(agent);
+		terrain.getCase(agent.getCoordonnee()).addAgents(agent);
 	}
 
 	public void removeAgent(Agent agent) {

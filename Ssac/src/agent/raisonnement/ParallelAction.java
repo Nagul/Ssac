@@ -1,4 +1,4 @@
-package agent.raisonnement ;
+	package agent.raisonnement ;
 
 import agent.agents.Agent;
 

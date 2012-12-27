@@ -50,8 +50,7 @@ public class MoveAction extends Action {
 			}
 			// pas accessible et pas la destination (sinon on va boucler sur cette étape) : on regenere le path
 			else if (index <= path.getLength() - 1) {
-				AStarPathFinder aStar = new AStarPathFinder(TestQt.environnement.getTerrain(), 50, true);
-				Path newPath = aStar.findPath(master,
+				Path newPath = TestQt.aStar.findPath(master,
 						master.getCoordonnee().getAbscisse(),
 						master.getCoordonnee().getOrdonnee(),
 						target.getAbscisse(),
@@ -91,8 +90,7 @@ public class MoveAction extends Action {
 			}
 			// sinon : cheat mode, carte static totale
 			else {
-				AStarPathFinder aStar = new AStarPathFinder(TestQt.environnement.getTerrain(), 50, true);
-				Path newPath = aStar.findPath(master,
+				Path newPath = TestQt.aStar.findPath(master,
 						master.getCoordonnee().getAbscisse(),
 						master.getCoordonnee().getOrdonnee(),
 						target.getAbscisse(),

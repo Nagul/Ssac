@@ -88,10 +88,10 @@ public class Terrain implements TileBasedMap {
 			return (cases[x][y].getType() == TypeTerrain.Montagne);
 		}
 		if (agent instanceof AgentLoup) {
-			return (cases[x][y].getType() == TypeTerrain.Montagne);
+			return (cases[x][y].getType() == TypeTerrain.Montagne || cases[x][y].getType() == TypeTerrain.EauDeMer);
 		}
 		if (agent instanceof AgentMouton) {
-			return (cases[x][y].getType() == TypeTerrain.Montagne);
+			return (cases[x][y].getType() == TypeTerrain.Montagne || cases[x][y].getType() == TypeTerrain.EauDeMer);
 		}
 		if (agent instanceof AgentOiseau) {
 			return false;
@@ -125,8 +125,6 @@ public class Terrain implements TileBasedMap {
 		}
 		if (agent instanceof AgentLoup) {
 			switch (cases[sx][sy].getType()) {
-				case EauDeMer:
-					return 6;
 				case EauDouce:
 					return 6;
 				case Foret:
@@ -139,8 +137,6 @@ public class Terrain implements TileBasedMap {
 		}
 		if (agent instanceof AgentMouton) {
 			switch (cases[sx][sy].getType()) {
-				case EauDeMer:
-					return 6;
 				case EauDouce:
 					return 6;
 				case Foret:

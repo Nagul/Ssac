@@ -4,6 +4,7 @@ import environnement.Coordonnee;
 import affichage.TestQt;
 import agent.agents.Agent;
 import agent.agents.TypeAgent;
+import agent.raisonnement.Connaissance;
 import agent.raisonnement.MoveAction;
 
 public class GoalPredateur extends Goal {
@@ -16,7 +17,20 @@ public class GoalPredateur extends Goal {
 	}
 	
 	public void calculGoal() {
-		priorite = 99;
+		priorite = 0;
+		for (Coordonnee c : agent.getListConnaissances().keySet()) {
+			//agent proche
+			if (Math.pow(c.getAbscisse() - agent.getCoordonnee().getAbscisse(), 2)
+					+ Math.pow(c.getOrdonnee() - agent.getCoordonnee().getOrdonnee(), 2) < 30) {
+				//predateur ?
+				for (Agent a : agent.getListConnaissances().get(c).getSouvenir().getAgents()) {
+					if (a.getType().equals(predateur)) {
+						priorite = 99;
+						break;
+					}
+				}
+			}
+		}
 	}
 
 	public void createPlanning() {
