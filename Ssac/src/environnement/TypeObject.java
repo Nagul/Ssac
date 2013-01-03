@@ -1,11 +1,11 @@
 package environnement;
 
 public enum TypeObject {
-	MAISON,
-	ROCHER,
-	ETC
+	BOSQUET,
+	BUISSON,
+	CHAMP
 	/*
-	 * tous les types d'object statiques, ça servira pour classer facilement les différents
+	 * tous les types d'object statiques, ï¿½a servira pour classer facilement les diffï¿½rents
 	 * types d'objets pour l'affichage.
 	 */
 	

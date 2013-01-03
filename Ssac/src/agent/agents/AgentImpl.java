@@ -151,7 +151,7 @@ public abstract class AgentImpl implements Agent {
 	}
 		
 	public Case getCase() {
-		return TestQt.environnement.getTerrain().getCase(this.getCoordonnee()) ;
+		return TestQt.environnement.getTerrain().getCase(this.coordonnee) ;
 	}
 	
 	public Coordonnee find(TypeSmallObject target) {

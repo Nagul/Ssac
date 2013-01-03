@@ -2,17 +2,17 @@ package environnement;
 
 import java.util.ArrayList;
 
+import affichage.TestQt;
 import agent.agents.Agent;
 import agent.raisonnement.EventType;
 
-public class EnvObjectImpl implements EnvObject {
+public abstract class EnvObjectImpl implements EnvObject {
 
 	private Coordonnee coordonnee;
-	private TypeObject type;
+	protected TypeObject type;
 	
-	public EnvObjectImpl(Coordonnee co, TypeObject t) {
+	public EnvObjectImpl(Coordonnee co) {
 		coordonnee = co;
-		type = t;
 	}
 	
 	public Coordonnee getCoordonnee() {
@@ -23,28 +23,20 @@ public class EnvObjectImpl implements EnvObject {
 		return type;
 	}
 
-	@Override
-	public ArrayList<TypeSmallObject> getTools(EventType type) {
-		// TODO Auto-generated method stub
-		return null;
+	public Case getCase() {
+		return TestQt.environnement.getTerrain().getCase(this.coordonnee) ;
 	}
+	
+	@Override
+	public abstract ArrayList<TypeSmallObject> getTools(EventType type);
 
 	@Override
-	public boolean available(EventType type) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	public abstract boolean available(EventType type);
 
 	@Override
-	public boolean use(Agent master, EventType type) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	public abstract boolean use(Agent master, EventType type);
 
 	@Override
-	public int estimateDuration(EventType type) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	public abstract int estimateDuration(EventType type) ;
 
 }
